@@ -1,0 +1,115 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Cambiar a center para centrar verticalmente */
+    background: linear-gradient(135deg, #003566, #000814);
+    flex-direction: column; /* Mantiene la disposición en columna */
+}
+
+/* Mensaje inicial fijo */
+#fixedMessage {
+    font-size: 2em;
+    color: #ff69b4;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    margin-bottom: 80px; /* Reduce el espacio entre el mensaje y el corazón */
+    text-align: center;
+}
+
+/* Contenedor del corazón */
+.heart-container {
+    position: relative;
+    z-index: 1; /* Asegura que el corazón esté al frente */
+    margin-bottom: 400px; /* Reduce el espacio entre el corazón y el mensaje largo */
+}
+
+.heart {
+    position: relative;
+    width: 70px;
+    height: 70px;
+    background: #ff4757;
+    transform: rotate(-45deg);
+    box-shadow: -10px 10px 90px #ff4757;
+    animation: animate .6s linear infinite;
+}
+
+@keyframes animate {
+    0% {
+        transform: rotate(-45deg) scale(1.07);
+    }
+    80% {
+        transform: rotate(-45deg) scale(1.0);
+    }
+    100% {
+        transform: rotate(-45deg) scale(0.8);
+    }
+}
+
+.heart::before,
+.heart::after {
+    content: '';
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    background: #ff4757;
+    border-radius: 50%;
+    box-shadow: -10px 10px 90px #ff4757;
+}
+
+.heart::before {
+    top: -50%;
+}
+
+.heart::after {
+    right: -50%;
+}
+
+.heart {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(45deg, #ff4757, #e74292);
+}
+
+/* Pétalos */
+.petal {
+    position: fixed;
+    border-radius: 50%;
+    transform: rotate(-45deg);
+}
+
+@keyframes fall {
+    0% {
+        transform: rotate(-45deg) translate(0, 0);
+    }
+    100% {
+        transform: rotate(-45deg) translate(0, 500px);
+        opacity: 0;
+    }
+}
+
+/* Contenedor del mensaje */
+#messageContainer {
+    position: absolute;
+    bottom: 5%; /* Ajuste para dar más espacio entre el mensaje largo y el corazón */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%; /* Mantiene el texto dentro del rango de la pantalla */
+    font-size: 1.2em;
+    color: #ff69b4;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    text-align: center;
+    display: none; /* Oculta el mensaje inicialmente */
+    z-index: 0; /* Asegura que el mensaje esté detrás del corazón */
+}
+
+/* Efecto de escritura */
+#birthdayMessage {
+    white-space: normal; /* Permite que el texto haga saltos de línea en pantallas pequeñas */
+    line-height: 1.5; /* Mejora la legibilidad del texto */
+}
